@@ -17,6 +17,7 @@ float_2 = 8.7
 
 print(f"Python side: int_1 = {int_1}, int_2 = {int_2}, array_pointer_1 = 0x{array_pointer_1.value:x} ({array_pointer_1.value}), array_pointer_2 = 0x{array_pointer_2.value:x} ({array_pointer_2.value}), float_1 = {float_1}, float_2 = {float_2}")
 
+print("Correct call")
 libc_interface.reorder_case_1(
     ctypes.c_int(int_1),
     ctypes.c_int(int_2),
@@ -71,4 +72,52 @@ libc_interface.reorder_case_1(
     ctypes.c_int(int_2),
     array_pointer_1,
     array_pointer_2,
+)
+
+float_1 = 1.0 / 3.0
+float_2 = 2.0 / 3.0
+double_1 = 1.0 / 7.0
+double_2 = 2.0 / 7.0
+
+print()
+print(f"Python side: int_1 = {int_1}, int_2 = {int_2}, float_1 = {float_1:.6f}, float_2 = {float_2:.6f}, double_1 = {double_1:.6f}, double_2 = {double_2:.6f}")
+
+print("Correct call")
+libc_interface.reorder_case_2(
+    ctypes.c_int(int_1),
+    ctypes.c_int(int_2),
+    ctypes.c_float(float_1),
+    ctypes.c_float(float_2),
+    ctypes.c_double(double_1),
+    ctypes.c_double(double_2),
+)
+
+print("No reorder within float or double, just put them in between integer arugments, on C side, nothing changed")
+libc_interface.reorder_case_2(
+    ctypes.c_float(float_1),
+    ctypes.c_int(int_1),
+    ctypes.c_float(float_2),
+    ctypes.c_double(double_1),
+    ctypes.c_int(int_2),
+    ctypes.c_double(double_2),
+)
+
+print("Mess up float and double, on C side, the result also get messed up")
+libc_interface.reorder_case_2(
+    ctypes.c_int(int_1),
+    ctypes.c_int(int_2),
+    ctypes.c_double(double_1),
+    ctypes.c_double(double_2),
+    ctypes.c_float(float_1),
+    ctypes.c_float(float_2),
+)
+
+print("Only mess up the order between float_2 and double_1, the other two are preserved")
+libc_interface.reorder_case_2(
+    ctypes.c_int(int_1),
+    ctypes.c_int(int_2),
+    ctypes.c_float(float_1),
+    ctypes.c_double(double_1),
+    ctypes.c_float(float_2),
+    ctypes.c_double(double_2),
 )
