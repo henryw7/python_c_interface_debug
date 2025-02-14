@@ -121,3 +121,122 @@ libc_interface.reorder_case_2(
     ctypes.c_float(float_2),
     ctypes.c_double(double_2),
 )
+
+int_1 = 11
+int_2 = 12
+int_3 = 13
+int_4 = 14
+int_5 = 15
+int_6 = 16
+int_7 = 17
+int_8 = 18
+int_9 = 19
+int_10 = 110
+int_11 = 111
+int_12 = 112
+int_13 = 113
+int_14 = 114
+int_15 = 115
+int_16 = 116
+int_17 = 117
+int_18 = 118
+int_19 = 119
+int_20 = 120
+int_21 = 121
+int_22 = 122
+int_23 = 123
+int_24 = 124
+float_1 = 1.1
+float_2 = 2.2
+float_3 = 3.3
+float_4 = 4.4
+float_5 = 5.5
+float_6 = 6.6
+float_7 = 7.7
+float_8 = 8.8
+float_9 = 9.9
+float_10 = 10.10
+float_11 = 11.11
+float_12 = 12.12
+
+print("24 integer and 12 float, the call stack is larger than register space")
+
+print("Correct call")
+libc_interface.reorder_case_3(
+    ctypes.c_int(int_1),
+    ctypes.c_int(int_2),
+    ctypes.c_int(int_3),
+    ctypes.c_int(int_4),
+    ctypes.c_int(int_5),
+    ctypes.c_int(int_6),
+    ctypes.c_int(int_7),
+    ctypes.c_int(int_8),
+    ctypes.c_int(int_9),
+    ctypes.c_int(int_10),
+    ctypes.c_int(int_11),
+    ctypes.c_int(int_12),
+    ctypes.c_int(int_13),
+    ctypes.c_int(int_14),
+    ctypes.c_int(int_15),
+    ctypes.c_int(int_16),
+    ctypes.c_int(int_17),
+    ctypes.c_int(int_18),
+    ctypes.c_int(int_19),
+    ctypes.c_int(int_20),
+    ctypes.c_int(int_21),
+    ctypes.c_int(int_22),
+    ctypes.c_int(int_23),
+    ctypes.c_int(int_24),
+    ctypes.c_float(float_1),
+    ctypes.c_float(float_2),
+    ctypes.c_float(float_3),
+    ctypes.c_float(float_4),
+    ctypes.c_float(float_5),
+    ctypes.c_float(float_6),
+    ctypes.c_float(float_7),
+    ctypes.c_float(float_8),
+    ctypes.c_float(float_9),
+    ctypes.c_float(float_10),
+    ctypes.c_float(float_11),
+    ctypes.c_float(float_12),
+)
+
+print("Move float_1 to some random position above other floats, on C side, nothing changed")
+libc_interface.reorder_case_3(
+    ctypes.c_float(float_1),
+    ctypes.c_int(int_1),
+    ctypes.c_int(int_2),
+    ctypes.c_int(int_3),
+    ctypes.c_int(int_4),
+    ctypes.c_int(int_5),
+    ctypes.c_int(int_6),
+    ctypes.c_int(int_7),
+    ctypes.c_int(int_8),
+    ctypes.c_int(int_9),
+    ctypes.c_int(int_10),
+    ctypes.c_int(int_11),
+    ctypes.c_int(int_12),
+    ctypes.c_int(int_13),
+    ctypes.c_int(int_14),
+    ctypes.c_int(int_15),
+    ctypes.c_int(int_16),
+    ctypes.c_int(int_17),
+    ctypes.c_int(int_18),
+    ctypes.c_int(int_19),
+    ctypes.c_int(int_20),
+    ctypes.c_int(int_21),
+    ctypes.c_int(int_22),
+    ctypes.c_int(int_23),
+    ctypes.c_int(int_24),
+    ctypes.c_float(float_2),
+    ctypes.c_float(float_3),
+    ctypes.c_float(float_4),
+    ctypes.c_float(float_5),
+    ctypes.c_float(float_6),
+    ctypes.c_float(float_7),
+    ctypes.c_float(float_8),
+    ctypes.c_float(float_9),
+    ctypes.c_float(float_10),
+    ctypes.c_float(float_11),
+    ctypes.c_float(float_12),
+)
